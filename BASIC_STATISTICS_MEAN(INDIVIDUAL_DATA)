@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+    int data[100];  // Array to store up to 100 numbers
+    int n, i;
+    float sum = 0, mean;
+
+    printf("Enter the number of observations: ");
+    scanf("%d", &n);
+
+    printf("Enter %d observations separated by spaces:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &data[i]);
+        sum += data[i];
+    }
+
+    mean = sum / n;
+
+    printf("Mean of the data is: %.2f\n", mean);
+
+    return 0;
+}
