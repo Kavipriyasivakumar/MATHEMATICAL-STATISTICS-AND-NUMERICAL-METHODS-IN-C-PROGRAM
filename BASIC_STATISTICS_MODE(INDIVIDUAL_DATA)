@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+int main() {
+    int data[] = {320, 395, 342, 444, 451, 395, 425, 395, 425, 417, 395};
+    int size = sizeof(data) / sizeof(data[0]);
+
+    int freq[100]; // Assuming no more than 100 values for simplicity
+    int i, j, count, max_freq = 0;
+
+    // Initialize frequency array
+    for (i = 0; i < size; i++) {
+        freq[i] = -1; // -1 means unprocessed
+    }
+
+    // Count frequencies
+    for (i = 0; i < size; i++) {
+        count = 1;
+        for (j = i + 1; j < size; j++) {
+            if (data[i] == data[j]) {
+                count++;
+            }
+        }
+        freq[i] = count;
+        if (count > max_freq) {
+            max_freq = count;
+        }
+    }
+
+    // Print the mode
+    printf("Mode: ");
+    for (i = 0; i < size; i++) {
+        if (freq[i] == max_freq) {
+            // Avoid printing duplicates
+            int is_duplicate = 0;
+            for (j = 0; j < i; j++) {
+                if (data[i] == data[j]) {
+                    is_duplicate = 1;
+                    break;
+                }
+            }
+            if (!is_duplicate) {
+                printf("%d ", data[i]);
+            }
+        }
+    }
+
+    printf("\nIt appears %d times\n", max_freq);
+
+    return 0;
+}
